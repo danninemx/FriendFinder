@@ -32,10 +32,36 @@ module.exports = function (app) {
     // ---------------------------------------------------------------------------
 
     app.post("/api/friends", function (req, res) {
-        // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-        // It will do this by sending out the value "true" have a table
+        let myScores = req.body.scores;
+        let totalDifference = 40;
+        let tempDiff = 0;
+        let bestMatch = {};
+
+        app.get("/api/friends", function (req, currList) {
+            // For each friend object in the array...
+            for (let i = 0; i < currList.length; i++) {
+
+                // For each score in the friend's scores array...
+                for (let j = 0; j < currList[i].scores.length; j++) {
+                    // Sum the total difference.
+                    tempDiff += Math.abs(myScores[j] - currList[i].scores[j]);
+                }
+
+                // If difference is lower than record, update record and the "best match" and reset tempDiff. Else ignore.
+                if (tempDiff < totalDifference) {
+                    bestMatch = currList[i];
+                    totalDifference = tempDiff;
+                    tempDiff = 0;
+                }
+            }
+        });
+        // Note the code here. Our "server" will respond to requests and let users know if they have a match or not.
+        // It will do this by sending out the value "true" have a friend
         // req.body is available since we're using the body parsing middleware
         friends.push(req.body);
-        res.json(true);
+
+        // res.json(true);
+        // Return the best matched friend object
+        res.json(bestMatch);
     });
 };

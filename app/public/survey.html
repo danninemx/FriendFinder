@@ -278,19 +278,22 @@
 
           // AJAX post the data to the friends API.
           $.post("/api/friends", userData, function(data) {
-            console.log(data);
-            // if (data) {
-            //   // If any data was returned...
-            //   // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-            //   $("#match-name").text(data.name);
-            //   $("#match-img").attr("src", data.photo);
+            // console.log(data);
+            // $("#results-modal").modal("toggle");
 
-            //   // Show the modal with the best match
-            //   $("#results-modal").modal("toggle");
+            if (data) {
+              // If any data was returned...
+              // Grab the result from the AJAX post so that the best match's name and photo are displayed.
+              $("#match-name").text(data.name);
+              $("#match-img").attr("src", data.photo);
 
-            //   //
-            //   // EMPTY ALL INPUT FIELDS.
-            // }
+              // Show the modal with the best match
+              $("#results-modal").modal("toggle");
+
+              //
+              // EMPTY ALL INPUT FIELDS by selecting all drop downs and rename class.
+              // $(".chosen-single").attr("class", "chosen-single");
+            }
           });
         } else {
           alert("Please fill out all fields before submitting!");

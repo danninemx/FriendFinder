@@ -225,8 +225,7 @@
             <h2 class="modal-title"><strong>Warning</strong></h2>
           </div>
           <div class="modal-body">
-            <h2 id="match-name"></h2>
-            <img id="match-img" src="../assets/images/VaultBoyFO3.png" alt="" />
+            <h2 id="error-msg"></h2>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -282,7 +281,7 @@
 
         // If all required fields are filled
         if (validateForm()) {
-          // Create an object for the user"s data
+          // Create an object for the user's data
           var userData = {
             name: $("#name").val(),
             photo: $("#photo").val(),
@@ -303,8 +302,7 @@
           $.post("/api/friends", userData).then(data => {
             console.log(data);
             // Update the modal with the best match
-            $("#match-name").text(data.name);
-            $("#match-img").attr("src", data.photo);
+            $("#error-msg").text(data.name);
 
             // Show the modal with the best match
             $("#results-modal").modal("toggle");
@@ -315,12 +313,9 @@
               .trigger("chosen:updated");
           });
         } else {
-          // Update the modal with the best match
-          $("#match-name").text(data.name);
-          $("#match-img").attr("src", data.photo);
-
-          // Show the modal with the best match
-          $("#results-modal").modal("toggle");
+          // Update and display error modal
+          $("#error-name").text(data.name);
+          $("#error-modal").modal("toggle");
           // alert("Please fill out all fields before submitting!");
         }
       });

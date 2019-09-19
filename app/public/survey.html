@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>FriendFinder</title>
 
-    <!-- Latest compiled and minified CSS & JS -->
+    <!-- Bootstrap -->
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -12,13 +12,13 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-    <!-- Font Awesome Glyphicons -->
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"
-    />
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/71906a76a9.js"
+      crossorigin="anonymous"
+    ></script>
 
-    <!-- Chosen -->
+    <!-- Chosen CSS -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css"
@@ -198,7 +198,9 @@
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
-            <h2 class="modal-title"><strong>Best Match</strong></h2>
+            <h2 class="modal-title">
+              <strong>Match found!</strong>
+            </h2>
           </div>
           <div class="modal-body">
             <h2 id="match-name"></h2>
@@ -225,7 +227,9 @@
             <h2 class="modal-title"><strong>Warning</strong></h2>
           </div>
           <div class="modal-body">
-            <h2 id="error-msg"></h2>
+            <h3 id="error-msg">
+              Please fill out all fields before submitting!
+            </h3>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -302,21 +306,18 @@
           $.post("/api/friends", userData).then(data => {
             console.log(data);
             // Update the modal with the best match
-            $("#error-msg").text(data.name);
+            $("#match-name").text(data.name);
+            $("#match-img").attr({ src: data.photo, style: "max-width:100%" });
 
             // Show the modal with the best match
             $("#results-modal").modal("toggle");
 
-            // EMPTY ALL INPUT FIELDS by selecting all drop downs and rename class.
-            $(".chosen-single")
-              .val("")
-              .trigger("chosen:updated");
+            // Empty form fields after successful submission
+            // $(".chosen-single").val("").trigger("chosen:updated");
           });
         } else {
-          // Update and display error modal
-          $("#error-name").text(data.name);
+          // If not validated, display error modal
           $("#error-modal").modal("toggle");
-          // alert("Please fill out all fields before submitting!");
         }
       });
     </script>

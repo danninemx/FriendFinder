@@ -6,7 +6,7 @@
 
 var friends = [
     {
-        "name": "Kanny D.",
+        "name": "Danny K.",
         "photo": "https://avatars1.githubusercontent.com/u/5622650",
         "scores": [
             1,

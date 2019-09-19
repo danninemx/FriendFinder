@@ -5,7 +5,6 @@
 // ===============================================================================
 
 var friends = require("../data/friends");
-// var waitListData = require("../data/waitinglistData");
 
 
 // ===============================================================================
@@ -14,21 +13,15 @@ var friends = require("../data/friends");
 
 module.exports = function (app) {
     // API GET Requests
-    // Below code handles when users "visit" a page.
-    // In each of the below cases when a user visits a link
-    // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
+    // When user visits the route, display all friends in the array.
     // ---------------------------------------------------------------------------
 
     app.get("/api/friends", function (req, res) {
         res.json(friends);
     });
 
-    // API POST Requests
-    // Below code handles when a user submits a form and thus submits data to the server.
-    // When a user submits form data (a JSON object)
-    // ...the JSON is pushed to the appropriate JavaScript array
-    // (ex. User fills out a survey... this data is then sent to the server...
-    // Then the server saves the data to the friends array)
+    // API POST Request
+    // User's form info is pushed to friends array and matching friend is returned.
     // ---------------------------------------------------------------------------
 
     app.post("/api/friends", function (req, res) {
@@ -38,8 +31,6 @@ module.exports = function (app) {
         let bestMatch = {};
 
         console.log('myScores = ' + myScores);
-
-        // console.log('Current List is ' + friends);
 
         // For each friend object in the array...
         for (let i = 0; i < friends.length; i++) {
@@ -57,14 +48,9 @@ module.exports = function (app) {
                 tempDiff = 0;
             }
         };
-        // Note the code here. Our "server" will respond to requests and let users know if they have a match or not.
-        // It will do this by sending out the value "true" have a friend
-        // req.body is available since we're using the body parsing middleware
+        // Add user data to friends array
         friends.push(req.body);
-        // console.log('req.body = ' + req.body);
 
-        // console.log('bestMatch = ' + bestMatch);
-        // res.json(true);
         // Return the best matched friend object
         res.json(bestMatch);
     });

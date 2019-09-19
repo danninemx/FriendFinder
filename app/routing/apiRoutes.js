@@ -42,11 +42,11 @@ module.exports = function (app) {
             }
 
             // If difference is lower than record, update record and the "best match" and reset tempDiff. Else ignore.
-            if (tempDiff < totalDifference) {
+            if (tempDiff <= totalDifference) {
                 bestMatch = friends[i];
                 totalDifference = tempDiff;
-                tempDiff = 0;
             }
+            tempDiff = 0;
         };
         // Add user data to friends array
         friends.push(req.body);

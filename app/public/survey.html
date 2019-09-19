@@ -204,7 +204,12 @@
           </div>
           <div class="modal-body">
             <h2 id="match-name"></h2>
-            <img id="match-img" src="../assets/images/VaultBoyFO3.png" alt="" />
+            <img
+              id="match-img"
+              src="../assets/images/VaultBoyFO3.png"
+              style="max-width: 100%"
+              alt=""
+            />
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">
@@ -241,6 +246,8 @@
     </div>
 
     <script type="text/javascript">
+      let matchImg = document.getElementById("match-img");
+
       // Chosen CSS
       var config = {
         ".chosen-select": {},
@@ -307,9 +314,9 @@
             console.log(data);
             // Update the modal with the best match
             $("#match-name").text(data.name);
-            $("#match-img").attr({ src: data.photo, style: "max-width:100%" });
 
-            // Show the modal with the best match
+            $("#match-img").attr({ src: data.photo });
+
             $("#results-modal").modal("toggle");
 
             // Empty form fields after successful submission

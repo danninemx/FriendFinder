@@ -1,4 +1,4 @@
-# <a href="https://boiling-ravine-17883.herokuapp.com">Friend Finder</a> <img src="https://github.com/danninemx/friendfinder/blob/master/app/assets/images/friend-finder-logo.png/" alt="Friend Finder logo" align="right" height="100"> <a name="top"></a>
+# <a href="https://boiling-ravine-17883.herokuapp.com">Friend Finder</a> <img src="https://github.com/danninemx/friendfinder/blob/master/app/assets/images/friend-finder-logo.png/" alt="Friend Finder logo" align="right" height="80"> <a name="top"></a>
 
 ## Table of Contents <a name="toc"></a>
 

@@ -55,7 +55,7 @@ var friends = [
     },
     {
         "name": "Prad Bitt",
-        "photo": "https://photos.laineygossip.com/articles/pitt-cotillard-allied-22nov16-07.jpg",
+        "photo": "https://lh3.googleusercontent.com/-RcG0ciU_1_M/TXs9QfaWAtI/AAAAAAAABJE/TrJVhnlGAL4/s1600/Brad+Pitt.jpg",
         "scores": [
             4,
             4,
